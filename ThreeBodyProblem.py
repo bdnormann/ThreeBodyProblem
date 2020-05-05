@@ -1,16 +1,18 @@
 """
-Adapted from code at http://matplotlib.sourceforge.net/examples/animation/double_pendulum_animated.py
-Double pendulum formula translated from the C code at
+This script is adapted from 
+1) The code at http://matplotlib.sourceforge.net/examples/animation/double_pendulum_animated.py
+Double pendulum formula, which was translated from the C code at
 http://www.physics.usyd.edu.au/~wheat/dpend_html/solve_dpend.c
+and
+2) modified by Jake Vanderplas, email: vanderplas@astro.washington.edu, website: http://jakevdp.github.com, license: BSD
 
-author: Jake Vanderplas
-email: vanderplas@astro.washington.edu
-website: http://jakevdp.github.com
-license: BSD
-Please feel free to use and modify this, but keep the above information. Thanks!
+Building on the above, this script is an implementation of the Verlet algorithm for 3 bodies in interaction.
+Author: Ben David Normann
+
+Please feel free to use and modify this, keeping the above information. Thanks!
 """
 
-# This is an implementation of the Verlet algorithm for 3 bodies in interaction.
+
 import numpy as np
 from matplotlib.pyplot import figure, show
 import matplotlib.animation as animation
@@ -37,7 +39,7 @@ class ThreeBodyProblem:
         self.time_elapsed = 0
         self.state = self.init_state
 
-    """Defining two arrays x and y of positions. These positions will be updated by self.step (to be defined):"""
+    #Now we define two arrays x and y of positions, which will be updated by self.step (to be defined):
 
     def position(self):
         x = np.asarray([self.state[0],
@@ -50,7 +52,7 @@ class ThreeBodyProblem:
 
     # Function calculating the energy:
     def energy(self):
-        """compute the energy of the current state"""
+        #compute the energy of the current state
         (sun, s1, s2) = self.params
 
         # positoins
